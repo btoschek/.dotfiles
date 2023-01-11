@@ -26,6 +26,7 @@ local function plugins(use)
 
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'nvim-lua/plenary.nvim' }
+  use { 'kkharji/sqlite.lua' }
 
   -----------------------------------------------------------------------------
    -- Visuals
@@ -96,8 +97,9 @@ local function plugins(use)
   use { 'lewis6991/gitsigns.nvim' }
   use { 'pwntester/octo.nvim' }
 
-
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
+  use { 'dhruvmanila/telescope-bookmarks.nvim', tag = '*' }
+
   use { 'anuvyklack/pretty-fold.nvim' }
 
 

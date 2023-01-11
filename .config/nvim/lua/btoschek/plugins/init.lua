@@ -16,6 +16,7 @@ require('btoschek.plugins._nvim-cmp')
 require('btoschek.plugins._luasnip')
 
 require('btoschek.plugins._git')
+require('btoschek.plugins._telescope')
 
 -- TODO: Move this to actual color settings
 vim.cmd [[
