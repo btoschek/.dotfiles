@@ -17,16 +17,3 @@ require('btoschek.plugins._luasnip')
 
 require('btoschek.plugins._git')
 require('btoschek.plugins._telescope')
-
--- TODO: Move this to actual color settings
-vim.cmd [[
-  colorscheme tokyonight
-  highlight clear SignColumn
-]]
-
-vim.cmd [[
-  highlight GitGutterAdd guibg=dark
-  highlight GitGutterChange guibg=dark
-  highlight GitGutterChangeDelete guibg=dark
-  highlight GitGutterDelete guibg=dark
-]]

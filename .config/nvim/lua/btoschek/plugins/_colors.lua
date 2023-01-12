@@ -1,4 +1,4 @@
-if _G.plugin_loaded('tokyonight-vim') then
+if not _G.plugin_loaded('tokyonight-vim') then
   do return end
 end
 
