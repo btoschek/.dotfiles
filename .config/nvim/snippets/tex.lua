@@ -100,38 +100,95 @@ end
 
 return {
 
-  -- Greek letters
+  -- {{{ Greek letters
 
-  s({trig = ';a', snippetType = 'autosnippet'},
-  { t('\\alpha'), }),
+  s(autotext(';a', 'alpha', 'Greek alpha'),
+    t('\\alpha'),
+    { condition = cond.in_mathzone }
+  ),
 
-  s({trig = ';A', snippetType = 'autosnippet'},
-  { t('\\Alpha'), }),
+  s(autotext(';A', 'Alpha', 'Greek Alpha'),
+    t('\\Alpha'),
+    { condition = cond.in_mathzone }
+  ),
 
-  s({trig = ';b', snippetType = 'autosnippet'},
-  { t('\\beta'), }),
+  s(autotext(';b', 'beta', 'Greek beta'),
+    t('\\beta'),
+    { condition = cond.in_mathzone }
+  ),
 
-  s({trig = ';B', snippetType = 'autosnippet'},
-  { t('\\Beta'), }),
+  s(autotext(';B', 'Beta', 'Greek Beta'),
+    t('\\Beta'),
+    { condition = cond.in_mathzone }
+  ),
 
-  s({trig = ';g', snippetType = 'autosnippet'},
-  { t('\\gamma'), }),
+  s(autotext(';g', 'gamma', 'Greek gamma'),
+    t('\\gamma'),
+    { condition = cond.in_mathzone }
+  ),
 
-  s({trig = ';G', snippetType = 'autosnippet'},
-  { t('\\Gamma'), }),
+  s(autotext(';G', 'Gamma', 'Greek Gamma'),
+    t('\\Gamma'),
+    { condition = cond.in_mathzone }
+  ),
 
-  s({trig = ';d', snippetType = 'autosnippet'},
-  { t('\\delta'), }),
+  s(autotext(';d', 'delta', 'Greek delta'),
+    t('\\delta'),
+    { condition = cond.in_mathzone }
+  ),
 
-  s({trig = ';D', snippetType = 'autosnippet'},
-  { t('\\Delta'), }),
+  s(autotext(';D', 'Delta', 'Greek Delta'),
+    t('\\Delta'),
+    { condition = cond.in_mathzone }
+  ),
 
-  -- Other stuff TODO: Sort
+  s(autotext(';e', 'epsilon', 'Greek epsilon'),
+    t('\\epsilon'),
+    { condition = cond.in_mathzone }
+  ),
+
+  s(autotext(';E', 'Epsilon', 'Greek Epsilon'),
+    t('\\Epsilon'),
+    { condition = cond.in_mathzone }
+  ),
+
+  s(autotext(';z', 'zeta', 'Greek zeta'),
+    t('\\zeta'),
+    { condition = cond.in_mathzone }
+  ),
+
+  s(autotext(';Z', 'Zeta', 'Greek Zeta'),
+    t('\\Zeta'),
+    { condition = cond.in_mathzone }
+  ),
+
+  -- }}}
+
+  -- {{{ Math
 
   s(autotext('ff', 'Fraction', 'Create a fraction'),
     fmta("\\frac{<>}{<>}", { i(1), i(2) }),
     { condition = cond.in_mathzone }
   ),
+
+  s(autotext('sq', 'sqrt{}', 'Square-root'),
+    fmta("\\sqrt{<>}", { i(1) }),
+    { condition = cond.in_mathzone }
+  ),
+
+  s(autotext('(', 'left( right)', 'Create math compatible braces'),
+    fmta([[\left( <> \right)]], { i(1) }),
+    { condition = cond.in_mathzone }
+  ),
+
+  s(autotext('*', 'multiply', 'Better multiplication symbol'),
+    t(' \\cdot '),
+    { condition = cond.in_mathzone }
+  ),
+
+  -- }}}
+
+  -- Other stuff TODO: Sort
 
   -- Environments
 
@@ -142,7 +199,7 @@ return {
       \end{<>}
     ]], { i(1), i(0), rep(1) })),
 
-  s(text('...', 'ldots', 'Better version of ...'),
+  s(autotext('...', 'ldots', 'Better version of ...'),
     fmt([[
       \ldots
     ]], {})),
@@ -199,23 +256,9 @@ return {
       \usepackage[<>]{<>}
     ]], { i(1, 'options'), i(2, 'package') })),
 
-  s(text('br', 'left( right)', 'Create math compatible braces'),
-    fmt([[
-      \left( {} \right)
-    ]], {
-      i(1)
-    })),
-
-  s(autotext('sq', 'sqrt{}', 'Square-root'),
-    fmta("\\sqrt{<>}", { i(1) }),
-    { condition = cond.in_mathzone }),
 
 
-
-
-
-
-
+  -- {{{ Sections
 
   s(text('sec', 'Section', 'Section including label'),
     fmta([[
@@ -223,7 +266,8 @@ return {
       \label{sec:<>}
 
       <>
-    ]], { i(1, 'name'), f(labelize, 1), i(0) })),
+    ]], { i(1, 'name'), f(labelize, 1), i(0) })
+  ),
 
   s(text('sub', 'Subsection', 'Subsection including label'),
     fmta([[
@@ -231,15 +275,19 @@ return {
       \label{ssec:<>}
 
       <>
-    ]], { i(1, 'name'), f(labelize, 1), i(0) })),
+    ]], { i(1, 'name'), f(labelize, 1), i(0) })
+  ),
 
-  s(text('ssub', 'Subsection', 'Subsection including label'),
+  s(text('ssub', 'Subsubsection', 'Subsubsection including label'),
     fmta([[
       \subsubsection{<>}
       \label{sssec:<>}
 
       <>
-    ]], { i(1, 'name'), f(labelize, 1), i(0) })),
+    ]], { i(1, 'name'), f(labelize, 1), i(0) })
+  ),
+
+  -- }}}
 
   s(text('cit', 'Citation', 'Reference a bibliography entry'),
     fmt([[
