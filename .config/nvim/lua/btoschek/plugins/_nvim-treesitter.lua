@@ -28,6 +28,8 @@ require 'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     disable = {},
+    -- Band-aid solution to have treesitter highlights under LaTeX with vimtex
+    additional_vim_regex_highlighting = { 'latex' },
   },
   playground = {
     enable = true,

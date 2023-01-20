@@ -97,10 +97,16 @@ local function plugins(use)
   use { 'lewis6991/gitsigns.nvim' }
   use { 'pwntester/octo.nvim' }
 
+
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
   use { 'dhruvmanila/telescope-bookmarks.nvim', tag = '*' }
 
   use { 'anuvyklack/pretty-fold.nvim' }
+
+
+  -- Conceal and environment recognition for LaTeX
+  -- (currently mostly used for implementing snippets)
+  use { 'lervag/vimtex' }
 
 
   -- Automatically set up the configuration after cloning packer.nvim

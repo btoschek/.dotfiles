@@ -17,3 +17,5 @@ require('btoschek.plugins._luasnip')
 
 require('btoschek.plugins._git')
 require('btoschek.plugins._telescope')
+
+require('btoschek.plugins._vimtex')
