@@ -12,6 +12,7 @@ require('gitsigns').setup {
 
 -- Patch background highlighting to be the same as the background
 vim.cmd [[
+  highlight clear SignColumn
   highlight GitGutterAdd guibg=dark
   highlight GitGutterChange guibg=dark
   highlight GitGutterChangeDelete guibg=dark

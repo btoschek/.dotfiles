@@ -28,10 +28,12 @@ local plugins = {
   -----------------------------------------------------------------------------
 
   {
-    'ghifarit53/tokyonight-vim',
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    config = get_config('colors'),
+    config = function()
+      vim.cmd('colorscheme tokyonight-night')
+    end,
   },
 
   {
