@@ -190,9 +190,5 @@ local plugins = {
  -- Setup
 -----------------------------------------------------------------------------
 
--- Make sure remaps are loaded correctly
--- Source: https://github.com/folke/lazy.nvim#-installation
-vim.g.mapleader = ' '
-
 -- Initialize lazy
 require('lazy').setup(plugins, {})
