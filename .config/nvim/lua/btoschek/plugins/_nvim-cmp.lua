@@ -1,7 +1,3 @@
-if not _G.plugin_loaded('nvim-cmp') then
-  do return end
-end
-
 local lsp_icons = {
   Text          = '',
   Method        = '',

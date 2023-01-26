@@ -1,7 +1,3 @@
-if not _G.plugin_loaded('LuaSnip') then
-  do return end
-end
-
 local luasnip = require('luasnip')
 local types = require('luasnip.util.types')
 

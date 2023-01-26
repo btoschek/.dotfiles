@@ -1,8 +1,4 @@
-if not _G.plugin_loaded('nvim-treesitter') then
-  do return end
-end
-
-require 'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'arduino',
     'bash',

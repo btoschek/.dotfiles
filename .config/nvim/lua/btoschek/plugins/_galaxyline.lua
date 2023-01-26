@@ -1,7 +1,3 @@
-if not _G.plugin_loaded('galaxyline.nvim') then
-  do return end
-end
-
 -- {{{ Colors
 local colors = {
   bg_dark        = '#1f2335',

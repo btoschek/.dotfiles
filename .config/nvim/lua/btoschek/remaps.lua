@@ -10,7 +10,6 @@ end
 
 -- Map the Leader key
 map('n', '<Space>', '<NOP>')
-vim.g.mapleader = ' '
 
 -- Center search results
 map('n', 'n', 'nzz')
