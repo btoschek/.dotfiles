@@ -169,7 +169,8 @@ local plugins = {
     config = get_config('telescope'),
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'dhruvmanila/telescope-bookmarks.nvim'
+      'dhruvmanila/telescope-bookmarks.nvim',
+      'kkharji/sqlite.lua',
     },
   },
 
