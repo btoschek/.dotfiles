@@ -41,7 +41,7 @@ require('dashboard').setup {
       {
         icon = ' ',
         icon_hi = '@property',
-        desc = 'Update plugins             ',
+        desc = 'Update plugins            ',
         desc_hi = '@property',
         key = 'u',
         key_hi = '@property',
@@ -50,7 +50,7 @@ require('dashboard').setup {
       {
         icon = ' ',
         icon_hi = '@number',
-        desc = 'Language Servers           ',
+        desc = 'Language Servers          ',
         desc_hi = '@number',
         key = 'l',
         key_hi = '@number',
@@ -59,7 +59,7 @@ require('dashboard').setup {
       {
         icon = ' ',
         icon_hi = 'String',
-        desc = 'Bookmarks                  ',
+        desc = 'Bookmarks                 ',
         desc_hi = 'String',
         key = 'b',
         key_hi = 'String',
@@ -68,11 +68,20 @@ require('dashboard').setup {
       {
         icon = ' ',
         icon_hi = 'Label',
-        desc = 'Files                      ',
+        desc = 'Files                     ',
         desc_hi = 'Label',
         key = 'f',
         key_hi = 'Label',
         action = 'Telescope find_files',
+      },
+      {
+        icon = ' ',
+        icon_hi = '@method',
+        desc = 'Dotfiles                  ',
+        desc_hi = '@method',
+        key = 'd',
+        key_hi = '@method',
+        action = 'Telescope find_files search_dirs={"~/.config"}',
       },
     },
     footer = {
