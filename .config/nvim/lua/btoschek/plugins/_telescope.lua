@@ -23,3 +23,16 @@ require('telescope').setup(config)
 
 -- Look at your browser bookmarks in NeoVim
 require('telescope').load_extension('bookmarks')
+
+-----------------------------------------------------------------------------
+ -- Key bindings
+-----------------------------------------------------------------------------
+
+require('which-key').register({
+  f = {
+    name = 'File',
+    f = { '<CMD>Telescope find_files<CR>', 'Find file' },
+    b = { '<CMD>Telescope buffers<CR>', 'Manage buffers' },
+    d = { '<CMD>Telescope find_files search_dirs={"~/.config"}<CR>', 'Find dotfile' },
+  },
+}, { prefix = '<Leader>' })

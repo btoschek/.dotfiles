@@ -139,7 +139,7 @@ local plugins = {
   },
 
   -----------------------------------------------------------------------------
-   -- Snippets
+   -- Snippets & Commands
   -----------------------------------------------------------------------------
 
   {
@@ -148,6 +148,21 @@ local plugins = {
     dependencies = {
       'L3MON4D3/cmp_luasnip',  -- Snippet completion source for LuaSnip
     },
+  },
+
+  {
+    'folke/which-key.nvim',
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require('which-key').setup {
+        icons = {
+          breadcrumb = '» ',
+          separator = '➜ ',
+          group = ' ',
+        },
+      }
+    end,
   },
 
   -----------------------------------------------------------------------------
@@ -167,6 +182,8 @@ local plugins = {
       'nvim-tree/nvim-web-devicons',
     },
   },
+
+
 
   {
     'nvim-telescope/telescope.nvim',

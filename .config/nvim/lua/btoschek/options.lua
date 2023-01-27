@@ -5,7 +5,6 @@ cmd 'filetype indent plugin on'
 cmd 'set inccommand=split'
 
 opt.shortmess:append 'c'                  -- Avoid showing extra messages on completion
-vim.g.mapleader = ' '                     -- Set Leader key to <Space>
 
 opt.backup = false                        -- Disable backup files
 opt.clipboard = 'unnamedplus'             -- Allow Neovim to access system clipboard
