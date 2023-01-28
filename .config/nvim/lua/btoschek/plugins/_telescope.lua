@@ -1,4 +1,14 @@
+local actions = require('telescope.actions')
 local config = {
+  defaults = {
+    mappings = {
+      i = {
+        ['<ESC>'] = actions.close,
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
+      },
+    },
+  },
   extensions = {
     bookmarks = {
       selected_browser = 'firefox',
