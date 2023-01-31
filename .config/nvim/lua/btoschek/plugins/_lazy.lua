@@ -211,4 +211,9 @@ local plugins = {
 -----------------------------------------------------------------------------
 
 -- Initialize lazy
-require('lazy').setup(plugins, {})
+require('lazy').setup(
+  plugins,
+  {
+    lockfile = vim.fn.stdpath('data') .. '/lazy-lock.json',
+  }
+)
