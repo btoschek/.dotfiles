@@ -21,7 +21,9 @@ opt.list = true
 opt.listchars = { tab = ' ', trail = '·' }
 opt.mouse = 'a'                           -- Allow mouse usage
 opt.pumheight = 10                        -- Pop up menu height
+opt.ruler = false                         -- Hide current cursor row and column from builtin statusbar
 opt.scrolloff = 4                         -- How many lines to keep when scrolling
+opt.showcmd = false                       -- Hide keystrokes from builtin statusbar
 opt.showmode = false                      -- Don't show mode ('-- INSERT --')
 opt.showtabline = 2                       -- Always show tabs
 opt.sidescrolloff = 8                     -- Horizontal scrolloff
