@@ -183,6 +183,12 @@ local plugins = {
 
 
 
+  -- Use the terminal inside nvim
+  {
+    'akinsho/toggleterm.nvim',
+    config = get_config('toggleterm'),
+  },
+
   {
     'nvim-telescope/telescope.nvim',
     config = get_config('telescope'),

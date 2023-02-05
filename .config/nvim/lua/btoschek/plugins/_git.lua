@@ -18,3 +18,29 @@ vim.cmd [[
   highlight GitGutterChangeDelete guibg=dark
   highlight GitGutterDelete guibg=dark
 ]]
+
+-- Open a toggleterm with lazygit
+function Lazygit_toggle()
+  local term_command = 'lazygit'
+
+  -- Open dotfiles if not in git directory
+  if not require('galaxyline.condition').check_git_workspace() then
+    term_command = term_command .. ' --git-dir=' .. vim.env.HOME .. '/.dotfiles/ --work-tree='.. vim.env.HOME .. '/'
+  end
+
+  local terminal = require('toggleterm.terminal').Terminal
+  local lazygit  = terminal:new({
+    cmd = term_command,
+    direction = 'float',
+    hidden = true,
+  })
+
+  lazygit:toggle()
+end
+
+require('which-key').register({
+  g = {
+    name = 'Git',
+    g = { '<CMD>lua Lazygit_toggle()<CR>', 'Open lazygit' },
+  },
+}, { prefix = '<Leader>' })
