@@ -6,7 +6,7 @@ require('mason-lspconfig').setup {
     'arduino_language_server',
     'jedi_language_server',
     'rust_analyzer',
-    'sumneko_lua',
+    'lua_ls',
     'texlab',
   },
 }

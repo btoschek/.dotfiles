@@ -2,11 +2,11 @@ local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local servers = {
-  'ansiblels',
-  'arduino_language_server',
   'jedi_language_server',
-  'sumneko_lua',
-  'texlab',
+  'ansiblels',                       -- Ansible
+  'arduino_language_server',         -- Arduino
+  'lua_ls',                          -- Lua
+  'texlab',                          -- TeX / LaTeX
 }
 
 for _, lsp in ipairs(servers) do
@@ -14,8 +14,17 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
     settings = {
       Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
         diagnostics = {
-          globals = { 'vim' }
+          globals = { 'vim' },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file('', true),
+        },
+        telemetry = {
+          enable = false,
         },
       },
     },
