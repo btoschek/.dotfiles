@@ -2,9 +2,9 @@ local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local servers = {
-  'jedi_language_server',
   'ansiblels',                       -- Ansible
   'arduino_language_server',         -- Arduino
+  'ruff_lsp',                        -- Python
   'lua_ls',                          -- Lua
   'texlab',                          -- TeX / LaTeX
 }
