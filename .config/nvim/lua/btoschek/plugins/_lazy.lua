@@ -83,6 +83,7 @@ local plugins = {
     dependencies = {
       'nvim-treesitter/playground',
     },
+    build = ':TSUpdate',
   },
 
   -----------------------------------------------------------------------------
