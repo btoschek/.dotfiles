@@ -269,7 +269,7 @@ return {
     ]], { i(1, 'name'), f(labelize, 1), i(0) })
   ),
 
-  s(text('sub', 'Subsection', 'Subsection including label'),
+  s(text('ssec', 'Subsection', 'Subsection including label'),
     fmta([[
       \subsection{<>}
       \label{ssec:<>}
@@ -278,7 +278,7 @@ return {
     ]], { i(1, 'name'), f(labelize, 1), i(0) })
   ),
 
-  s(text('ssub', 'Subsubsection', 'Subsubsection including label'),
+  s(text('sssec', 'Subsubsection', 'Subsubsection including label'),
     fmta([[
       \subsubsection{<>}
       \label{sssec:<>}
