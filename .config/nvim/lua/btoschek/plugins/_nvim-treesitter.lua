@@ -32,3 +32,7 @@ require('nvim-treesitter.configs').setup {
     disable = {},
   },
 }
+
+vim.cmd [[
+  highlight TreesitterContext guibg=dark
+]]
