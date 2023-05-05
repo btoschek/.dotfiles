@@ -10,7 +10,6 @@ opt.backup = false                        -- Disable backup files
 opt.clipboard = 'unnamedplus'             -- Allow Neovim to access system clipboard
 opt.cmdheight = 2                         -- More space in Neovim command line
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}
-opt.conceallevel = 2                      -- Conceal some markers in LaTeX
 opt.fileencoding = 'utf-8'                -- Encoding written to files
 opt.fileformat = 'unix'                     -- Use \n for line endings
 opt.foldmethod = 'marker'
