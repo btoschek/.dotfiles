@@ -19,6 +19,7 @@ require('nvim-treesitter.configs').setup {
     'scss',
     'toml',
     'vim',
+    'vimdoc',
     'yaml',
   },
   highlight = {

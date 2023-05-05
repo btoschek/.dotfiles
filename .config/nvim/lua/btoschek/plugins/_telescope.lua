@@ -41,8 +41,9 @@ require('telescope').load_extension('bookmarks')
 require('which-key').register({
   f = {
     name = 'File',
-    f = { '<CMD>Telescope find_files<CR>', 'Find file' },
     b = { '<CMD>Telescope buffers<CR>', 'Manage buffers' },
     d = { '<CMD>Telescope find_files search_dirs={"~/.config"}<CR>', 'Find dotfile' },
+    f = { '<CMD>Telescope find_files<CR>', 'Find file' },
+    h = { '<CMD>Telescope help_tags<CR>', 'Find help tag' },
   },
 }, { prefix = '<Leader>' })
