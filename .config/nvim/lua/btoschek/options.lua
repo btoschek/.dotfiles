@@ -12,7 +12,8 @@ opt.cmdheight = 2                                      -- More space in Neovim c
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Don't select entries in completion menu by default
 opt.fileencoding = 'utf-8'                             -- Encoding written to files
 opt.fileformat = 'unix'                                -- Use \n for line endings
-opt.foldmethod = 'marker'                              -- TODO: Assess usage of treesitter here
+opt.foldexpr = 'nvim_treesitter#foldexpr()'            -- Use Treesitter to create folds automatically
+opt.foldmethod = 'expr'                                -- Use expression for creating folds
 opt.guifont = 'Hack NF:h12'                            -- Font used in graphical Neovim (under Windows)
 opt.hidden = true                                      -- When buffer goes out of sight, don't delete it
 opt.ignorecase = true                                  -- Ignore case in search patterns
@@ -47,3 +48,11 @@ opt.signcolumn = 'yes'                                 -- Always show sign colum
 opt.wildmenu = true                                    -- Show completions for editor commands when available
 opt.wildmode = { list = 'full', 'full' }               -- Show full list of completions (editor commands)
 opt.wrap = false                                       -- Set visual line wrapping
+
+-- Unfold every fold created by Treesitter
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'FileReadPost' }, {
+  group = vim.api.nvim_create_augroup('btoschek-open-folds', { clear = true }),
+  callback = function()
+    vim.api.nvim_command('normal zR')
+  end
+})
