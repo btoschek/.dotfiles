@@ -215,6 +215,15 @@ local plugins = {
     'lervag/vimtex',
     config = get_config('vimtex'),
   },
+
+  -- Browse & edit directories like buffers
+  {
+    'stevearc/oil.nvim',
+    config = get_config('oil'),
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+  },
 }
 
 -----------------------------------------------------------------------------
