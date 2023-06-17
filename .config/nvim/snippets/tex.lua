@@ -190,6 +190,12 @@ return {
 
   -- Other stuff TODO: Sort
 
+  s(autoreg('(%w+)_(%w+)%s', 'Auto-indexing', 'Auto-index values after "_"'),
+    f(function(_, caps)
+      return caps.captures[1] .. '_{' .. caps.captures[2] .. '} '
+    end)
+  ),
+
   -- Environments
 
   s(text('beg', 'Begin', 'Create a new environment'),
