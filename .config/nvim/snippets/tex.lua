@@ -208,7 +208,7 @@ return {
     fmta([[
       \begin{table}[<>]
         \centering
-        \begin{tabular}[|<>|]
+        \begin{tabular}{|<>|}
           <>
         \end{tabular}
         \caption{<>}
