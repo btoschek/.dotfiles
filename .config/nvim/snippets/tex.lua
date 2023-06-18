@@ -190,9 +190,15 @@ return {
 
   -- Other stuff TODO: Sort
 
-  s(autoreg('(%w+)_(%w+)%s', 'Auto-indexing', 'Auto-index values after "_"'),
+  s(autoreg('(%w+}*)_(%w+)([%s^])', 'Automatic indices', 'Automatically index values after "_"'),
     f(function(_, caps)
-      return caps.captures[1] .. '_{' .. caps.captures[2] .. '} '
+      return caps.captures[1] .. '_{' .. caps.captures[2] .. '}' .. caps.captures[3]
+    end)
+  ),
+
+  s(autoreg('(%w+}*)^(%w+)([%s_])', 'Automatic exponents', 'Automatically create exponents with characters after "^"'),
+    f(function(_, caps)
+      return caps.captures[1] .. '^{' .. caps.captures[2] .. '}' .. caps.captures[3]
     end)
   ),
 
