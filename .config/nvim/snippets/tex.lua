@@ -171,8 +171,8 @@ return {
     { condition = cond.in_mathzone }
   ),
 
-  s(autotext('sq', 'sqrt{}', 'Square-root'),
-    fmta("\\sqrt{<>}", { i(1) }),
+  s(autotext('sqr', 'sqrt{}', 'Square-root'),
+    fmta('\\sqrt{<>}', { i(1) }),
     { condition = cond.in_mathzone }
   ),
 
@@ -182,7 +182,7 @@ return {
   ),
 
   s(autotext('*', 'multiply', 'Better multiplication symbol'),
-    t(' \\cdot '),
+    t('\\cdot'),
     { condition = cond.in_mathzone }
   ),
 
