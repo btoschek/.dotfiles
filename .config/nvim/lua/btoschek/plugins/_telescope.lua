@@ -38,12 +38,27 @@ require('telescope').load_extension('bookmarks')
  -- Key bindings
 -----------------------------------------------------------------------------
 
-require('which-key').register({
-  f = {
-    name = 'File',
-    b = { '<CMD>Telescope buffers<CR>', 'Manage buffers' },
-    d = { '<CMD>Telescope find_files search_dirs={"~/.config"}<CR>', 'Find dotfile' },
-    f = { '<CMD>Telescope find_files<CR>', 'Find file' },
-    h = { '<CMD>Telescope help_tags<CR>', 'Find help tag' },
-  },
-}, { prefix = '<Leader>' })
+vim.keymap.set('n', '<leader>fb',
+  '<CMD>Telescope buffers<CR>',
+  { desc = 'Manage buffers', noremap = true, silent = true }
+)
+
+vim.keymap.set('n', '<Leader>ff',
+  '<CMD>Telescope find_files<CR>',
+  { desc = 'Find file', noremap = true, silent = true }
+)
+
+vim.keymap.set('n', '<Leader>fh',
+  '<CMD>Telescope help_tags<CR>',
+  { desc = 'Find help tag', noremap = true, silent = true }
+)
+
+vim.keymap.set('n', '<Leader>fd',
+  function()
+    require('telescope.builtin').find_files({
+      prompt_title = 'Dotfiles',
+      cwd = '~/.config',
+    })
+  end,
+  { desc = 'Browse dotfiles', noremap = true, silent = true }
+)

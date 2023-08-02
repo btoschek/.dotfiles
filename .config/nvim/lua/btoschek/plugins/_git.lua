@@ -38,9 +38,4 @@ function Lazygit_toggle()
   lazygit:toggle()
 end
 
-require('which-key').register({
-  g = {
-    name = 'Git',
-    g = { '<CMD>lua Lazygit_toggle()<CR>', 'Open lazygit' },
-  },
-}, { prefix = '<Leader>' })
+vim.keymap.set('n', '<Leader>gg', Lazygit_toggle, { desc = 'Open lazygit', noremap = true, silent = true })
