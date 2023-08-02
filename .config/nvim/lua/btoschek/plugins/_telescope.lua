@@ -38,20 +38,12 @@ require('telescope').load_extension('bookmarks')
  -- Key bindings
 -----------------------------------------------------------------------------
 
-vim.keymap.set('n', '<leader>fb',
-  '<CMD>Telescope buffers<CR>',
-  { desc = 'Manage buffers', noremap = true, silent = true }
-)
-
-vim.keymap.set('n', '<Leader>ff',
-  '<CMD>Telescope find_files<CR>',
-  { desc = 'Find file', noremap = true, silent = true }
-)
-
-vim.keymap.set('n', '<Leader>fh',
-  '<CMD>Telescope help_tags<CR>',
-  { desc = 'Find help tag', noremap = true, silent = true }
-)
+function SearchDotfiles()
+  require('telescope.builtin').find_files({
+    prompt_title = 'Dotfiles',
+    cwd = '~/.config',
+  })
+end
 
 vim.keymap.set('n', '<Leader>fd',
   function()
@@ -60,5 +52,5 @@ vim.keymap.set('n', '<Leader>fd',
       cwd = '~/.config',
     })
   end,
-  { desc = 'Browse dotfiles', noremap = true, silent = true }
+  { desc = 'Browse dotfiles', silent = true }
 )

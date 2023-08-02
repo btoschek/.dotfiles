@@ -187,6 +187,12 @@ local plugins = {
       'dhruvmanila/telescope-bookmarks.nvim',
       'kkharji/sqlite.lua',
     },
+    keys = {
+      { '<Leader>fb', '<CMD>Telescope buffers<CR>',    desc = 'Manage buffers', silent = true },
+      { '<Leader>fd' },
+      { '<Leader>ff', '<CMD>Telescope find_files<CR>', desc = 'Find file',      silent = true },
+      { '<Leader>fh', '<CMD>Telescope help_tags<CR>',  desc = 'Find help tag',  silent = true },
+    },
   },
 
   {
