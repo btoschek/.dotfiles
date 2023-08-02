@@ -2,11 +2,11 @@ local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local servers = {
-  'ansiblels',                       -- Ansible
-  'arduino_language_server',         -- Arduino
-  'ruff_lsp',                        -- Python
-  'lua_ls',                          -- Lua
-  'texlab',                          -- TeX / LaTeX
+  'ansiblels',               -- Ansible
+  'arduino_language_server', -- Arduino
+  'ruff_lsp',                -- Python
+  'lua_ls',                  -- Lua
+  'texlab',                  -- TeX / LaTeX
 }
 
 -- Yoinked straight from https://github.com/neovim/nvim-lspconfig#suggested-configuration
@@ -84,11 +84,9 @@ vim.diagnostic.config {
 --[[----------------------------------------------------------
                            Lua Setup
 ------------------------------------------------------------]]
-
 --[[----------------------------------------------------------
                           Rust Setup
 ------------------------------------------------------------]]
-
 require('rust-tools').setup {
 
   -- rust-tools options
@@ -121,9 +119,9 @@ require('rust-tools').setup {
     },
     standalone = false,
     on_attach = on_attach, -- function(_, bufnr)
-      -- local map = require('utils').keymap_buffer
+    -- local map = require('utils').keymap_buffer
 
-      --[[
+    --[[
       map('n', '<Leader><Leader>', '<CMD>RustHoverActions<CR>', bufnr)
       map('n', '<Leader>a', '<CMD>RustCodeAction<CR>', bufnr)
 

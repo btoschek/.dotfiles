@@ -1,10 +1,10 @@
 require('gitsigns').setup {
   signs = {
-    add          = {hl = 'GitSignsAdd'   , text = ' │', numhl='GitSignsAddNr'   , linehl='dark'},
-    change       = {hl = 'GitSignsChange', text = ' │', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = ' _', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    topdelete    = {hl = 'GitSignsDelete', text = ' ‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-    changedelete = {hl = 'GitSignsChange', text = ' ~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    add          = { hl = 'GitSignsAdd', text = ' │', numhl = 'GitSignsAddNr', linehl = 'dark' },
+    change       = { hl = 'GitSignsChange', text = ' │', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+    delete       = { hl = 'GitSignsDelete', text = ' _', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+    topdelete    = { hl = 'GitSignsDelete', text = ' ‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+    changedelete = { hl = 'GitSignsChange', text = ' ~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
   },
   -- WARN: Conflicts with Rust inline hints
   -- current_line_blame = true,
@@ -25,7 +25,7 @@ function Lazygit_toggle()
 
   -- Open dotfiles if not in git directory
   if not require('galaxyline.condition').check_git_workspace() then
-    term_command = term_command .. ' --git-dir=' .. vim.env.HOME .. '/.dotfiles/ --work-tree='.. vim.env.HOME .. '/'
+    term_command = term_command .. ' --git-dir=' .. vim.env.HOME .. '/.dotfiles/ --work-tree=' .. vim.env.HOME .. '/'
   end
 
   local terminal = require('toggleterm.terminal').Terminal

@@ -1,22 +1,22 @@
 -- {{{ LSP Imports
-local snip = require('luasnip')
+local snip       = require('luasnip')
 
-local c    = snip.c
-local i    = snip.i
-local s    = snip.s
-local t    = snip.t
+local c          = snip.c
+local i          = snip.i
+local s          = snip.s
+local t          = snip.t
 
-local d    = snip.dynamic_node
-local f    = snip.function_node
-local sn   = snip.snippet_node
+local d          = snip.dynamic_node
+local f          = snip.function_node
+local sn         = snip.snippet_node
 
-local fmt  = require('luasnip.extras.fmt').fmt
-local fmta = require('luasnip.extras.fmt').fmta
-local rep  = require('luasnip.extras').rep
+local fmt        = require('luasnip.extras.fmt').fmt
+local fmta       = require('luasnip.extras.fmt').fmta
+local rep        = require('luasnip.extras').rep
 -- }}}
 
 -- {{{ Streamline the process of creating snippet infos
-local text = function(trigger, name, description)
+local text       = function(trigger, name, description)
   return {
     trig        = trigger,
     name        = name,
@@ -26,7 +26,7 @@ local text = function(trigger, name, description)
     snippetType = 'snippet',
   }
 end
-local autotext = function(trigger, name, description)
+local autotext   = function(trigger, name, description)
   return {
     trig        = trigger,
     name        = name,
@@ -36,7 +36,7 @@ local autotext = function(trigger, name, description)
     snippetType = 'autosnippet',
   }
 end
-local regex = function(trigger, name, description)
+local regex      = function(trigger, name, description)
   return {
     trig        = trigger,
     name        = name,
@@ -46,7 +46,7 @@ local regex = function(trigger, name, description)
     snippetType = 'snippet',
   }
 end
-local autoreg = function(trigger, name, description)
+local autoreg    = function(trigger, name, description)
   return {
     trig        = trigger,
     name        = name,
@@ -59,24 +59,24 @@ end
 -- }}}
 
 -- {{{ Conditions
-local cond = {}
+local cond       = {}
 
 --- Math context detection
 cond.in_mathzone = function()
   return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
 
-cond.in_text = function()
+cond.in_text     = function()
   return not cond.in_mathzone()
 end
 
 --- Comment detection
-cond.in_comment = function()
+cond.in_comment  = function()
   return vim.fn['vimtex#syntax#in_comment']() == 1
 end
 
 --- Generic environment detection
-cond.in_env = function(name)
+cond.in_env      = function(name)
   local is_inside = vim.fn['vimtex#env#is_inside'](name)
   return (is_inside[1] > 0 and is_inside[2] > 0)
 end
@@ -167,7 +167,7 @@ return {
   -- {{{ Math
 
   s(autotext('ff', 'Fraction', 'Create a fraction'),
-    fmta("\\frac{<>}{<>}", { i(1), i(2) }),
+    fmta('\\frac{<>}{<>}', { i(1), i(2) }),
     { condition = cond.in_mathzone }
   ),
 
