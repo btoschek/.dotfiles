@@ -1,0 +1,44 @@
+#!/bin/sh
+
+workspaces() {
+
+  TOTAL=5
+
+  # Use sed instead of awk cause of problems with line buffering. Equivalent: awk '{print $1}' RS='(' FS=')'
+  # This issue is mentioned here:
+  #   https://stackoverflow.com/questions/33448231/awk-pipe-and-tail-f-giving-unexpected-behavior/33448495#33448495
+  OPEN=$(hyprctl workspaces | sed -n 's/.*(\([0-9]*\)).*/\1/p')
+  CURR=$(hyprctl activeworkspace | sed -n 's/.*(\([0-9]*\)).*/\1/p')
+
+  JSON=""
+
+  for i in $(seq 1 $TOTAL)
+  do
+
+    # Check if workspace is open
+    [[ $OPEN == *"$i"* ]] && ICON="" || ICON=""
+
+    # Check if workspace is the currently active one
+    [[ $CURR == "$i" ]] && ACTIVE="true" || ACTIVE="false"
+
+    # Construct JSON return value
+    JSON="${JSON}{ \"index\": $i, \"icon\": \"$ICON\", \"active\": $ACTIVE },"
+  done
+
+  # Strip last comma
+  echo "[ ${JSON::-1} ]"
+}
+
+filter() {
+  # Only react to workspace events or "focusedmon" event
+  if [[ "${1%\>\>*}" == *"workspace"* ]] || [[ "${1%\>\>*}" == "focusedmon" ]]; then
+    workspaces
+  fi
+}
+
+workspaces
+
+# Relevant info for -u flag: https://github.com/elkowar/eww/discussions/492#discussioncomment-3045075
+socat -u "UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" - | while read -r event; do
+  filter "$event"
+done

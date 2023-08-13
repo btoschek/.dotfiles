@@ -1,0 +1,43 @@
+(deflisten workspace-info "scripts/workspaces")
+
+(defwidget workspaces []
+  (box
+    :class "workspaces"
+    :orientation "h"
+    :space-evenly false
+    (for workspace in workspace-info
+      (button
+        :class {workspace.active ? "active" : ""}
+        :onclick "hyprctl dispatch workspace ${workspace.index}"
+        (label :text {workspace.icon})
+      )
+    )
+  )
+)
+
+;; ======================================================================
+;;  Window: Top status bar
+;; ======================================================================
+
+(defwindow top_bar
+  :monitor 0
+  :geometry (geometry
+    :x "0%"
+    :y "9px"
+    :width "98%"
+    :height "30px"
+    :anchor "top center"
+  )
+  :exclusive true
+  :stacking "fg"
+  :windowtype "dock"
+  (topbar)
+)
+
+(defwidget topbar []
+  (box
+    :class "top_bar"
+    :orientation "h"
+    (workspaces)
+  )
+)
