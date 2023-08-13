@@ -1,3 +1,8 @@
+(defpoll date :interval "1s" "date '+%A, %d.%m'")
+(defpoll time :interval "1s" "date '+%H:%M'")
+
+(defvar time_reveal false)
+
 (deflisten workspace-info "scripts/workspaces")
 
 (defwidget workspaces []
@@ -10,6 +15,35 @@
         :class {workspace.active ? "active" : ""}
         :onclick "hyprctl dispatch workspace ${workspace.index}"
         (label :text {workspace.icon})
+      )
+    )
+  )
+)
+
+(defwidget iconbtn [icon value]
+  (box
+    :class "icon-button"
+    :orientation "h"
+    :space-evenly false
+    (label :text icon)
+    (label :text value)
+  )
+)
+
+(defwidget datetime []
+  (eventbox
+    :onhover "${EWW_CMD} update time_reveal=true"
+    :onhoverlost "${EWW_CMD} update time_reveal=false"
+    (box
+      :orientation "h"
+      :space-evenly false
+      :spacing "10"
+      (label :text time)
+      (revealer
+        :transition "slideleft"
+        :reveal time_reveal
+        :duration "350ms"
+        (iconbtn :icon "󰃭 " :value date)
       )
     )
   )
@@ -35,9 +69,39 @@
 )
 
 (defwidget topbar []
-  (box
+  (centerbox
     :class "top_bar"
     :orientation "h"
+    (left)
+    (center)
+    (right)
+  )
+)
+
+(defwidget left []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "start"
+
     (workspaces)
+  )
+)
+
+(defwidget center []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+  )
+)
+
+(defwidget right []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+
+    (datetime)
   )
 )
