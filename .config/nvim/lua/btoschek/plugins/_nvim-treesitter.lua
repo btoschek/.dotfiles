@@ -21,6 +21,7 @@ require('nvim-treesitter.configs').setup {
     'vim',
     'vimdoc',
     'yaml',
+    'yuck',
   },
   highlight = {
     enable = true,
