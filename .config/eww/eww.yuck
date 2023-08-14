@@ -2,6 +2,9 @@
 (defpoll time :interval "1s" "date '+%H:%M'")
 
 (defvar time_reveal false)
+(defvar music_reveal false)
+
+(defpoll song-info :interval "1s" "scripts/music --info")
 
 (deflisten workspace-info "scripts/workspaces")
 
@@ -50,6 +53,41 @@
 )
 
 ;; ======================================================================
+;;  Music
+;; ======================================================================
+
+(defwidget music_bar []
+  (eventbox
+    :onhover "${EWW_CMD} update music_reveal=true"
+    :onhoverlost "${EWW_CMD} update music_reveal=false"
+    (box
+      :orientation "h"
+      :space-evenly false
+      :spacing "10"
+      (box
+        :space-evenly false
+        :spacing "10"
+        (provider_icon :provider {song-info.provider})
+        (label :text {song-info.title})
+      )
+      (revealer
+        :transition "slideleft"
+        :reveal music_reveal
+        :duration "350ms"
+        (label :text " - ${song-info.artist}")
+      )
+    )
+  )
+)
+
+(defwidget provider_icon [provider]
+  (label
+    :style "color: ${provider == 'spotify' ? '#1db954' : '#f7768e'};"
+    :text {provider == "spotify" ? "" : "󰉌"}
+  )
+)
+
+;; ======================================================================
 ;;  Window: Top status bar
 ;; ======================================================================
 
@@ -93,6 +131,8 @@
     :orientation "h"
     :space-evenly false
     :halign "center"
+
+    (music_bar)
   )
 )
 

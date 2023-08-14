@@ -1,0 +1,102 @@
+#!/bin/sh
+
+OFFLINE="Offline"
+PLAYER="--player=spotify,mpd"
+COMMAND="playerctl $PLAYER"
+
+download_cover_if_needed () {
+  URL=$1
+  DIR=$2
+  NAME=$3
+
+  # Ensure temp directory exists
+  [ -d "$DIR" ] || mkdir -p $DIR
+
+  # Download image if not present
+  [ -e "$DIR/$NAME" ] || curl -s "$URL" -o "$DIR/$NAME"
+
+  # Delete files if necessary
+  AMOUNT_COVERS=$(/bin/ls -1 "$DIR" | wc -l)
+  FILES_OVER_CAP=$(( "$AMOUNT_COVERS" - 100 ))
+
+  # Always delete multiple files (buffer of 10)
+  if [ "$FILES_OVER_CAP" -gt 10 ]; then
+    for file in `/bin/ls -1r --time=birth | head -n "$FILES_OVER_CAP"`
+    do
+      rm "$DIR/$file"
+    done
+  fi
+}
+
+get_info() {
+
+  DIV="<||>"
+  QUERY=$(echo "\
+    {{ title }}$DIV \
+    {{ artist }}$DIV \
+    {{ album }}$DIV \
+    {{ mpris:artUrl }}$DIV \
+    {{ status }}$DIV \
+    {{ duration(position) }}$DIV \
+    {{ position / 1000000 }}$DIV \
+    {{ duration(mpris:length) }}$DIV \
+    {{ mpris:length / 1000000 }}$DIV \
+    {{ shuffle }}$DIV \
+    {{ loop }}$DIV \
+    {{ volume }} \
+  " | tr -d "[:space:]")
+  INFO=$($COMMAND metadata --format "$QUERY")
+  INFO=$(echo -e "$INFO" | tr "$DIV" "\n")
+
+  # Convert string to Shell array
+  SAVEIFS=$IFS
+  IFS=$'\n'
+  INFO=($INFO)
+  IFS=$SAVEIFS
+
+  # Download cover image if not already cached
+  COVER_DIR=/tmp/album_covers
+  COVER_URL="${INFO[3]}"
+  COVER_NAME=${COVER_URL##*/}
+
+  download_cover_if_needed "$COVER_URL" "$COVER_DIR" "$COVER_NAME"
+
+  # Construct filepath of cached album cover
+  COVER_PATH="$COVER_DIR/$COVER_NAME"
+
+  [ -z "${INFO[0]}" ]  && TITLE=$OFFLINE        || TITLE="${INFO[0]}"           # Title
+  [ -z "${INFO[1]}" ]  && ARTIST=$OFFLINE       || ARTIST="${INFO[1]}"          # Artist
+  [ -z "${INFO[2]}" ]  && ALBUM=$OFFLINE        || ALBUM="${INFO[2]}"           # Album
+  [ -z "${INFO[4]}" ]  && STATUS=$OFFLINE       || STATUS="${INFO[4]}"          # Status
+  [ -z "${INFO[5]}" ]  && TIME_DISPLAY="0:00"   || TIME_DISPLAY="${INFO[5]}"    # Time (display string)
+  [ -z "${INFO[6]}" ]  && TIME_SECS="0"         || TIME_SECS="${INFO[6]}"       # Time (seconds) (float)
+  [ -z "${INFO[7]}" ]  && LENGTH_DISPLAY="0:00" || LENGTH_DISPLAY="${INFO[7]}"  # Length (display string)
+  [ -z "${INFO[8]}" ]  && LENGTH_SECS="0"       || LENGTH_SECS="${INFO[8]}"     # Length (seconds) (float)
+  [ -z "${INFO[9]}" ]  && SHUFFLE="false"       || SHUFFLE="${INFO[9]}"         # Shuffle
+  [ -z "${INFO[10]}" ] && LOOP="None"           || LOOP="${INFO[10]}"           # Loop mode
+  [ -z "${INFO[11]}" ] && VOLUME="0"            || VOLUME="${INFO[11]}"         # Volume
+
+  # TEMP: Just return Spotify as provider for now
+  echo "{\
+    \"title\":    \"$TITLE\",\
+    \"artist\":   \"$ARTIST\",\
+    \"album\":    \"$ALBUM\",\
+    \"cover\":    \"$COVER_PATH\",\
+    \"status\":   \"$STATUS\",\
+    \"time\":     { \"display\": \"$TIME_DISPLAY\", \"secs\": $TIME_SECS },\
+    \"length\":   { \"display\": \"$LENGTH_DISPLAY\", \"secs\": $LENGTH_SECS },\
+    \"shuffle\":  $SHUFFLE,\
+    \"loop\":     \"$LOOP\",\
+    \"volume\":   $VOLUME,\
+    \"provider\": \"spotify\"\
+  }"
+}
+
+case $1 in
+  "--info")  get_info ;;
+  "--next")  playerctl $PLAYER next ;;
+  "--prev")  playerctl $PLAYER previous ;;
+  "--play")  playerctl $PLAYER play ;;
+  "--pause") playerctl $PLAYER pause ;;
+  "--stop")  playerctl $PLAYER stop ;;
+esac
