@@ -1,6 +1,9 @@
 (defpoll date :interval "1s" "date '+%A, %d.%m'")
 (defpoll time :interval "1s" "date '+%H:%M'")
 
+(defpoll calendar_day :interval "20h" "date '+%d'")
+(defpoll calendar_year :interval "20h" "date '+%Y'")
+
 (defvar time_reveal false)
 (defvar music_reveal false)
 
@@ -139,6 +142,40 @@
           :value {round(song-info.time.secs, 0)}
         )
         (label :halign "start" :text "${song-info.time.display} / ${song-info.length.display}")
+      )
+    )
+  )
+)
+
+;; ======================================================================
+;;  Calendar
+;; ======================================================================
+
+(defwindow calendar-win
+  :monitor 0
+  :geometry (geometry
+    :x "1%"
+    :y "9px"
+    :anchor "top right"
+    :width "270px"
+  )
+  (calendar_)
+)
+
+(defwidget calendar_ []
+  (box :class "calendar" :orientation "v"
+    (box :class "content"
+      :orientation "v"
+      :space-evenly false
+      (label
+        :class "date"
+        :halign "start"
+        :text date
+      )
+      (calendar
+        :day calendar_day
+        :year calendar_year
+        :show-week-numbers true
       )
     )
   )

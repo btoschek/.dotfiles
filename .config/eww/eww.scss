@@ -87,3 +87,18 @@ $white:   #c0caf5;
     }
   }
 }
+
+.calendar {
+  background-color: $background;
+  color: $foreground;
+  border-radius: 10px;
+
+  .content {
+    margin: 20px;
+
+    .date {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+  }
+}
