@@ -39,3 +39,51 @@ $white:   #c0caf5;
     }
   }
 }
+
+.music-popup {
+  background-color: $background;
+  color: $foreground;
+  border-radius: 10px;
+
+  font-family: Hack Nerd Font;
+  font-weight: bold;
+
+  border: 1px solid $background;
+
+  .cover {
+    opacity: 0.3;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .provider {
+    margin: 5px;
+    font-size: 2.5em;
+    min-width: 54px;
+  }
+
+  .info {
+    margin: 20px;
+    font-size: 1.2em;
+  }
+
+  // TODO: Rework into compound widget with info
+  .progress {
+    margin: 15px;
+
+    scale trough {
+      min-width: 380px;
+      min-height: 10px;
+      border-radius: 10px;
+      background-color: $background;
+      // background-color: #595959;
+      box-shadow: 0 3px 4px 2px #2b2b2b;
+    }
+
+    scale trough highlight {
+      border-radius: 10px;
+      background-color: $red;
+    }
+  }
+}

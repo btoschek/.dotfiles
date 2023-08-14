@@ -87,6 +87,63 @@
   )
 )
 
+(defwindow music
+  :monitor 0
+  :geometry (geometry
+    :x "20px"
+    :y "1%"
+    :width 428
+    :height 200
+    :anchor "top right"
+  )
+  :stacking "fg"
+  (music_popup)
+)
+
+(defwidget music_popup []
+  (box
+    :class "music-popup"
+    :orientation "h"
+    :space-evenly false
+    (overlay
+      (box
+        :class "cover"
+        :width 428
+        :style "background-image: url('${song-info.cover}');"
+      )
+      (box
+        :class "provider"
+        :orientation "h"
+        :halign "end"
+        :valign "start"
+        (provider_icon :provider {song-info.provider})
+      )
+      (box
+        :class "info"
+        :orientation "v"
+        :halign "start"
+        :valign "center"
+        :space-evenly false
+        :spacing "10"
+        (label :halign "start" :limit-width 30 :text {song-info.title})
+        (label :halign "start" :limit-width 30 :text {song-info.artist})
+      )
+      (box
+        :class "progress"
+        :orientation "v"
+        :halign "center"
+        :valign "end"
+        (scale
+          :min 0
+          :max {round(song-info.length.secs, 0)}
+          :value {round(song-info.time.secs, 0)}
+        )
+        (label :halign "start" :text "${song-info.time.display} / ${song-info.length.display}")
+      )
+    )
+  )
+)
+
 ;; ======================================================================
 ;;  Window: Top status bar
 ;; ======================================================================
