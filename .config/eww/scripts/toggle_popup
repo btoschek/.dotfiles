@@ -1,0 +1,28 @@
+#!/bin/sh
+
+EWW=$(which eww)
+
+calendar() {
+  if [ "$($EWW get calendar_popup_open)" == "true" ]; then
+    $EWW close calendar_win
+    $EWW update calendar_popup_open=false
+  else
+    $EWW open calendar_win
+    $EWW update calendar_popup_open=true
+  fi
+}
+
+music() {
+  if [ "$($EWW get music_popup_open)" == "true" ]; then
+    $EWW close music_win
+    $EWW update music_popup_open=false
+  else
+    $EWW open music_win
+    $EWW update music_popup_open=true
+  fi
+}
+
+case $1 in
+  "calendar") calendar ;;
+  "music")    music    ;;
+esac
