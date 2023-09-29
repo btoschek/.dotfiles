@@ -201,7 +201,7 @@
     :anchor "top center"
   )
   :exclusive true
-  :stacking "fg"
+  :stacking "bg"
   :windowtype "dock"
   (topbar)
 )
