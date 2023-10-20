@@ -27,7 +27,7 @@ alias lg='lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export NNN_OPTS='dEio'
 export NNN_BMS="c:$HOME/.config;d:$HOME/Downloads;m:$HOME/Music;p:$HOME/Pictures;v:$HOME/Videos"
 export NNN_FIFO="$TMPDIR/nnn.fifo"
-export NNN_PLUG='c:chksum;p:preview-tui;g:gpge'
+export NNN_PLUG='c:chksum;p:preview-tui;g:gpge;w:btwallpaper'
 
 # Taken from: https://github.com/jarun/nnn/wiki/Themes#nord
 # TODO: Actually switch to tokyonight
