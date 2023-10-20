@@ -29,3 +29,7 @@ convert "$1" "$IMAGE"
 # Load wallpaper from current location
 hyprctl hyprpaper preload "$IMAGE"
 hyprctl hyprpaper wallpaper "$TARGET,$IMAGE"
+
+# Reload eww (otherwise widgets will be
+# blocked by the set wallpaper)
+eww reload
