@@ -5,13 +5,8 @@
 (defpoll calendar_year :interval "20h" "date '+%Y'")
 
 (defvar time_reveal false)
-(defvar music_reveal false)
 
-;; Variables used to toggle popup windows
-(defvar music_popup_open false)
 (defvar calendar_popup_open false)
-
-(defpoll song-info :interval "1s" "scripts/music --info")
 
 (deflisten workspace-info "scripts/workspaces")
 
@@ -64,37 +59,7 @@
 ;;  Music
 ;; ======================================================================
 
-(defwidget music_bar []
-  (eventbox
-    :onhover "${EWW_CMD} update music_reveal=true"
-    :onhoverlost "${EWW_CMD} update music_reveal=false"
-    :onclick "${EWW_CONFIG_DIR}/scripts/toggle_popup music"
-    (box
-      :orientation "h"
-      :space-evenly false
-      :spacing "10"
-      (box
-        :space-evenly false
-        :spacing "10"
-        (provider_icon :provider {song-info.provider})
-        (label :text {song-info.title})
-      )
-      (revealer
-        :transition "slideleft"
-        :reveal music_reveal
-        :duration "350ms"
-        (label :text " - ${song-info.artist}")
-      )
-    )
-  )
-)
-
-(defwidget provider_icon [provider]
-  (label
-    :style "color: ${provider == 'spotify' ? '#1db954' : '#f7768e'};"
-    :text {provider == "spotify" ? "" : "󰉌"}
-  )
-)
+(include "./widgets/music.yuck")
 
 (defwindow music_win
   :monitor 0
@@ -106,50 +71,9 @@
     :anchor "top center"
   )
   :stacking "fg"
-  (music_popup)
-)
-
-(defwidget music_popup []
-  (box
-    :class "music-popup"
-    :orientation "h"
-    :space-evenly false
-    (overlay
-      (box
-        :class "cover"
-        :width 428
-        :style "background-image: url('${song-info.cover}');"
-      )
-      (box
-        :class "provider"
-        :orientation "h"
-        :halign "end"
-        :valign "start"
-        (provider_icon :provider {song-info.provider})
-      )
-      (box
-        :class "info"
-        :orientation "v"
-        :halign "start"
-        :valign "center"
-        :space-evenly false
-        :spacing "10"
-        (label :halign "start" :limit-width 30 :text {song-info.title})
-        (label :halign "start" :limit-width 30 :text {song-info.artist})
-      )
-      (box
-        :class "progress"
-        :orientation "v"
-        :halign "center"
-        :valign "end"
-        (scale
-          :min 0
-          :max {round(song-info.length.secs, 0)}
-          :value {round(song-info.time.secs, 0)}
-        )
-        (label :halign "start" :text "${song-info.time.display} / ${song-info.length.display}")
-      )
-    )
+  (music_popup
+    :width 428
+    :height 200
   )
 )
 
