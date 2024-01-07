@@ -16,10 +16,10 @@ local config = {
   },
 }
 
-if vim.fn.has('win32') then
-  vim.g.sqlite_clib_path = os.getenv('USERPROFILE') .. '/sqlite3/sqlite3.dll'
-  config.extensions.bookmarks.url_open_command = 'start firefox'
-end
+-- if vim.fn.has('win32') then
+--   vim.g.sqlite_clib_path = os.getenv('USERPROFILE') .. '/sqlite3/sqlite3.dll'
+--   config.extensions.bookmarks.url_open_command = 'start firefox'
+-- end
 
 -----------------------------------------------------------------------------
 -- Telescope setup
