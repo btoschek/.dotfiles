@@ -6,8 +6,7 @@ require('gitsigns').setup {
     topdelete    = { hl = 'GitSignsDelete', text = ' ‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
     changedelete = { hl = 'GitSignsChange', text = ' ~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
   },
-  -- WARN: Conflicts with Rust inline hints
-  -- current_line_blame = true,
+  current_line_blame = true, -- NOTE: Search for option to display after rust-tools inlay hints
 }
 
 -- Patch background highlighting to be the same as the background
