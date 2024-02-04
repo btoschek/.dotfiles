@@ -110,7 +110,11 @@ cmp.setup {
     { name = 'nvim_lua' },
     { name = 'luasnip' },
     { name = 'path' },
-    { name = 'buffer' },
+    { name = 'buffer',
+      option = {
+        keyword_pattern = [[\k\+]], -- Modify completion keywords to work with umlauts
+      },
+    },
     { name = 'calc' },
     { name = 'crates' },
   },
