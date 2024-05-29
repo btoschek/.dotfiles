@@ -1,20 +1,4 @@
 #!/bin/sh
 
 [ -z "$1" ] && exit
-
-# Prompt the user for display number
-printf "Set wallpaper for display: "
-read DISPLAY
-
-case "$DISPLAY" in
-  1) TARGET="DP-1";;
-  2) TARGET="DP-2";;
-  *) exit;;
-esac
-
-# Set wallpaper
-swww img -o "$TARGET" --transition-type grow --transition-pos top-right "$1"
-
-# Reload eww (otherwise widgets will be
-# blocked by the set wallpaper)
-eww reload
+$HOME/.local/bin/wallpaper "$1"
