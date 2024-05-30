@@ -137,16 +137,6 @@ require('rust-tools').setup {
   },
 }
 
--- Try auto-formatting if LSP server exists
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = vim.api.nvim_create_augroup('btoschek-writepre', { clear = true }),
-  callback = function()
-    if vim.lsp.buf.server_ready() then
-      vim.lsp.buf.format()
-    end
-  end
-})
-
 require('fidget').setup {
   text = { spinner = 'dots' }
 }
