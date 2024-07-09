@@ -168,7 +168,11 @@ local plugins = {
     config = get_config('git'),
   },
 
+  -----------------------------------------------------------------------------
+  -- Database Queries
+  -----------------------------------------------------------------------------
 
+  require('btoschek.plugins.dadbod'),
 
   {
     'nvim-telescope/telescope.nvim',
