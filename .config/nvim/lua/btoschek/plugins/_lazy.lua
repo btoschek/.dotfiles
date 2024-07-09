@@ -168,22 +168,7 @@ local plugins = {
     config = get_config('git'),
   },
 
-  {
-    'pwntester/octo.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-  },
 
-
-
-  -- Use the terminal inside nvim
-  {
-    'akinsho/toggleterm.nvim',
-    config = get_config('toggleterm'),
-  },
 
   {
     'nvim-telescope/telescope.nvim',
