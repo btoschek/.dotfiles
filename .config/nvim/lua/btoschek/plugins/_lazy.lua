@@ -190,8 +190,6 @@ local plugins = {
     config = get_config('telescope'),
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'dhruvmanila/telescope-bookmarks.nvim',
-      'kkharji/sqlite.lua',
     },
     keys = {
       { '<Leader>fb', '<CMD>Telescope buffers<CR>',    desc = 'Manage buffers', silent = true },
