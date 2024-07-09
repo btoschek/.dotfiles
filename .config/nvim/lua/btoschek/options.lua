@@ -44,7 +44,7 @@ opt.tabstop = 2                                        -- Convert tab to x space
 opt.number = true                                      -- Show absolute line numbers
 opt.relativenumber = true                              -- Show relative line numbers
 opt.numberwidth = 4                                    -- Remove jitter for 3-wide line numbers
-opt.signcolumn = 'yes'                                 -- Always show sign column
+-- opt.signcolumn = 'yes'                                 -- Always show sign column
 opt.wildmenu = true                                    -- Show completions for editor commands when available
 opt.wildmode = { list = 'full', 'full' }               -- Show full list of completions (editor commands)
 opt.wrap = false                                       -- Set visual line wrapping
