@@ -8,7 +8,7 @@ opt.shortmess:append 'c'                               -- Avoid showing extra me
 
 opt.backup = false                                     -- Disable backup files
 opt.clipboard = 'unnamedplus'                          -- Allow Neovim to access system clipboard
-opt.cmdheight = 2                                      -- More space in Neovim command line
+opt.cmdheight = 1                                      -- More space in Neovim command line
 opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Don't select entries in completion menu by default
 opt.fileencoding = 'utf-8'                             -- Encoding written to files
 opt.fileformat = 'unix'                                -- Use \n for line endings
