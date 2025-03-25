@@ -81,6 +81,9 @@ local plugins = {
     build = ':TSUpdate',
   },
 
+  -- Snacks (collection of multiple small plugins)
+  require('btoschek.plugins.snacks'),
+
   -- Statuscolumn
   require('btoschek.plugins.statuscol'),
 
