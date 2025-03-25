@@ -57,15 +57,6 @@ local plugins = {
   },
 
   {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
-    config = get_config('dashboard'),
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-  },
-
-  {
     'folke/todo-comments.nvim',
     config = get_config('todo-comments'),
     dependencies = {
