@@ -157,10 +157,7 @@ local plugins = {
   -- Git
   -----------------------------------------------------------------------------
 
-  {
-    'lewis6991/gitsigns.nvim',
-    config = get_config('git'),
-  },
+  require('btoschek.plugins.gitsigns'),
 
   -----------------------------------------------------------------------------
   -- Database Queries
