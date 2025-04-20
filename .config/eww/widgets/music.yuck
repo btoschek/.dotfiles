@@ -79,3 +79,30 @@
   )
 )
 
+;;; Music information (usable as display in sidebar)
+(defwidget music_info [width height]
+  (box
+    :class "info-panel music-info"
+    :orientation "h"
+    :space-evenly false
+    :width width
+    :height height
+    (box
+      :class "cover"
+      :width {height * 0.9}
+      :height {height * 0.9}
+      :style "background-image: url('${song-info.cover}'); margin: ${height * 0.05};"
+    )
+    (box
+      :class "info"
+      :orientation "v"
+      :halign "end"
+      :valign "center"
+      :space-evenly false
+      :spacing "10"
+      (label :halign "start" :limit-width 20 :text {song-info.title})
+      (label :halign "start" :limit-width 20 :text {song-info.artist})
+    )
+  )
+)
+

@@ -14,6 +14,8 @@ $white:   #c0caf5;
   all: unset; // Unset everything so we can start from scratch
 }
 
+@import 'sidebar/sidebar';
+
 .top_bar {
   background-color: $background;
   color: $foreground;
@@ -86,6 +88,30 @@ $white:   #c0caf5;
       background-color: $red;
     }
   }
+}
+
+.music-info {
+  .cover {
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+// NOTE: Temp -> rework !!!
+.user-info {
+  font-size: 20px;
+  padding: 5px;
+
+  .cover {
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .icon-user { color: $red; }
+  .icon-distro { color: $blue; }
+  .icon-uptime { color: $green; }
 }
 
 .calendar {

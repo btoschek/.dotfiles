@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case $1 in
+  "name")
+    whoami ;;
+  "distro")
+    cat /etc/*-release | sed -nr 's/PRETTY_NAME="(.*?)"/\1/p' ;;
+  "uptime")
+    uptime -p | cut -c4- ;;
+esac

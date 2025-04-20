@@ -22,7 +22,18 @@ music() {
   fi
 }
 
+sidebar() {
+  if [ "$($EWW get sidebar_popup_open)" == "true" ]; then
+    $EWW close side_bar
+    $EWW update sidebar_popup_open=false
+  else
+    $EWW open side_bar
+    $EWW update sidebar_popup_open=true
+  fi
+}
+
 case $1 in
   "calendar") calendar ;;
   "music")    music    ;;
+  "sidebar")  sidebar  ;;
 esac

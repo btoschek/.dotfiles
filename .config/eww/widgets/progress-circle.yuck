@@ -1,0 +1,21 @@
+(defwidget progressCircle [icon name value color ?size]  ; NOTE: Replace style with class
+  (box
+    :orientation "h"
+    :spacing 10
+    :style "color: ${color}; font-family: Hack Nerd Font Mono;"
+    (circular-progress
+      :height {size != "" ? size : 50} ; NOTE: Does this work?
+      :width {size != "" ? size : 50}
+      :style "font-size: 2rem;"
+      :value value
+      :thickness 5
+      :start-at 75
+      (label :text icon)
+    )
+    (box
+      :orientation "v"
+      (label :halign "start" :text name)
+      (label :halign "start" :text "${value}%")
+    )
+  )
+)

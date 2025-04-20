@@ -1,4 +1,4 @@
-(defpoll date :interval "1s" "date '+%A, %d.%m'")
+(defpoll date :interval "1s" "date '+%A, %d.%m.'")
 (defpoll time :interval "1s" "date '+%H:%M'")
 
 (defpoll calendar_day :interval "20h" "date '+%d'")
@@ -169,3 +169,9 @@
     (datetime)
   )
 )
+
+;; ======================================================================
+;;  Window: Side bar
+;; ======================================================================
+
+(include "./sidebar/sidebar.yuck")

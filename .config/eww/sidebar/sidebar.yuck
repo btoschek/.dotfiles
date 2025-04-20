@@ -1,0 +1,109 @@
+;; ======================================================================
+;;  Includes (used widgets)
+;; ======================================================================
+
+(include "./widgets/user.yuck")
+(include "./widgets/progress-circle.yuck")
+
+;; ======================================================================
+;;  Variables
+;; ======================================================================
+
+(defvar sidebar_popup_open false)
+
+(defvar width_sidebar 500)
+
+(defpoll disk_space :interval "1m" "./scripts/system disk-space")
+(defpoll ram_usage :interval "1s" "./scripts/system ram-usage")
+(defpoll cpu_usage :interval "1s" "./scripts/system cpu-usage")
+
+;; ======================================================================
+;;  Window(s)
+;; ======================================================================
+
+(defwindow side_bar
+  :monitor 1
+  :geometry (geometry
+    :x 0
+    :y 0
+    :width 500
+    :height "100%"
+    :anchor "center right"
+  )
+  :stacking "fg"
+
+  (box
+    :orientation "v"
+    :space-evenly false
+    :halign "center"
+    :class "side-bar"
+    :spacing "10"
+
+    ; Use empty box for setting top margin of next component
+    (box)
+
+    ; =====================================
+    ;  User Information
+    ; =====================================
+
+    (user_info
+      :width {width_sidebar * 0.95}
+      :height 120
+      :user_image "./assets/profile.jpg"
+    )
+
+    ; =====================================
+    ;  System overview
+    ; =====================================
+
+    (box
+      :orientation "h"
+      :spacing 30
+      :halign "center"
+      :class "info-panel"
+      :width {width_sidebar * 0.95}
+
+      (box
+        (progressCircle
+          :icon "󰘚"
+          :name "CPU"
+          :value cpu_usage
+          :color "#73daca"
+        )
+
+        (progressCircle
+          :icon "󰍛"
+          :name "RAM"
+          :value ram_usage
+          :color "#bb9af7"
+        )
+
+        (progressCircle
+          :icon ""
+          :name "MEMORY"
+          :value disk_space
+          :color "#7aa2f7"
+        )
+      )
+    )
+
+    ; =====================================
+    ;  Current time
+    ; =====================================
+
+    (label
+      :text time
+      :style "font-size: 50px;"
+    )
+
+    ; =====================================
+    ;  Current song
+    ; =====================================
+
+    (music_info
+      :width {width_sidebar * 0.95}
+      :height 120
+    )
+
+  )
+)

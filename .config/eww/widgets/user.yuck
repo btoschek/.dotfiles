@@ -1,0 +1,38 @@
+(defpoll username :interval "60s" "./scripts/user name")
+(defpoll distribution :interval "60s" "./scripts/user distro")
+(defpoll uptime :interval "60s" "./scripts/user uptime")
+
+(defwidget user_info [width height user_image]
+  (box
+    :class "info-panel user-info"
+    :orientation "h"
+    :space-evenly false
+    :width width
+    :height height
+    :spacing "15"
+    (box
+      :class "cover"
+      :width {height * 0.9}
+      :height {height * 0.9}
+      :style "background-image: url('${user_image}');"
+    )
+    (box
+      :orientation "v"
+      :valign "center"
+      :space-evenly false
+      :spacing "5"
+      (icon_label :halign "start" :icon "" :text "${username}" :icon_class "icon-user")
+      (icon_label :halign "start" :icon "󰣇" :text "${distribution}" :icon_class "icon-distro")
+      (icon_label :halign "start" :icon "" :text "${uptime}" :icon_class "icon-uptime")
+    )
+  )
+)
+
+(defwidget icon_label [icon text ?icon_class ?text_class]
+  (box
+    :space-evenly false
+    :spacing "20"
+    (label :class "icon ${icon_class}" :text icon)
+    (label :class "text ${text_class}" :text text)
+  )
+)

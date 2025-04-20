@@ -1,0 +1,11 @@
+.side-bar {
+  background-color: $background;
+  color: $foreground;
+  font-family: Hack Nerd Font;
+
+  .info-panel {
+    background-color: #1f202e;
+    border-radius: 10px;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+disk_usage() {
+  df -hl | awk '/^\/dev\/(sda|nvme0n1)/ { sum+=$5 } END { print sum / 2 }'
+}
+
+ram_usage() {
+  free -t | awk 'FNR == 2 { printf("%.0f"), $3/$2*100 }'
+}
+
+cpu_usage() {
+  grep -o "^[^ ]*" /proc/loadavg
+}
+
+case $1 in
+  "disk-space")  disk_usage  ;;
+  "ram-usage")   ram_usage   ;;
+  "cpu-usage")   cpu_usage   ;;
+esac
