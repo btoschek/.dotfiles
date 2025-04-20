@@ -229,8 +229,8 @@ return {
         \label{tab:<>}
       \end{table}
     ]], {
-      c(1, {t'H',t'h',t't',t'p',t'b'}),
-      c(2, {t'c',t'l',t'r'}),
+      c(1, { t 'H', t 'h', t 't', t 'p', t 'b' }),
+      c(2, { t 'c', t 'l', t 'r' }),
       i(3),
       i(4, 'caption'),
       i(5, 'label')
@@ -245,7 +245,7 @@ return {
         \label{fig:<>}
       \end{figure}
     ]], {
-      c(1, {t'H',t'h',t't',t'p',t'b'}),
+      c(1, { t 'H', t 'h', t 't', t 'p', t 'b' }),
       i(2, 'image path'),
       i(3, 'caption'),
       i(4, 'label')
@@ -286,7 +286,7 @@ return {
   s(text('ssec', 'Subsection', 'Subsection including label'),
     fmta([[
       \subsection{<>}
-      \label{ssec:<>}
+      \label{sec:<>}
 
       <>
     ]], { i(1, 'name'), f(labelize, 1), i(0) })
@@ -295,7 +295,7 @@ return {
   s(text('sssec', 'Subsubsection', 'Subsubsection including label'),
     fmta([[
       \subsubsection{<>}
-      \label{sssec:<>}
+      \label{sec:<>}
 
       <>
     ]], { i(1, 'name'), f(labelize, 1), i(0) })
