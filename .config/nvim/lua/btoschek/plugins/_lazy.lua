@@ -52,11 +52,6 @@ local plugins = {
   },
 
   {
-    'sidebar-nvim/sidebar.nvim',
-    config = get_config('sidebar'),
-  },
-
-  {
     'folke/todo-comments.nvim',
     config = get_config('todo-comments'),
     dependencies = {
