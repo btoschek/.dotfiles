@@ -71,15 +71,8 @@ local plugins = {
     end,
   },
 
-  {
-    'nvim-treesitter/nvim-treesitter',
-    config = get_config('nvim-treesitter'),
-    dependencies = {
-      'nvim-treesitter/playground',
-      'nvim-treesitter/nvim-treesitter-context',
-    },
-    build = ':TSUpdate',
-  },
+  -- Syntax highlighting & context-aware macros
+  require('btoschek.plugins.treesitter'),
 
   -- Snacks (collection of multiple small plugins)
   require('btoschek.plugins.snacks'),
