@@ -10,7 +10,6 @@ return {
 
     configs.setup {
       ensure_installed = {
-        'arduino',
         'bash',
         'bibtex',
         'c',
@@ -23,11 +22,14 @@ return {
         'lua',
         'make',
         'markdown',
+        'nix',
         'python',
         'regex',
         'rust',
         'scss',
+        'sql',
         'toml',
+        'typst',
         'vim',
         'vimdoc',
         'yaml',
@@ -35,7 +37,7 @@ return {
       },
       -- Don't install parsers set in 'ensure_installed' synchronously
       sync_install = false,
-      auto_install = false,
+      auto_install = true,
       ignore_install = {},
       highlight = {
         enable = true,
